@@ -5,18 +5,19 @@ import time
 import cv2  
 import numpy as np
 import os
-
+import random
 ocr = PaddleOCR(
-    # text_detection_model_name = "PP-OCRv5_mobile_det",
+    text_detection_model_name = "PP-OCRv5_server_det",
+    text_recognition_model_dir = "/data1/hang/Stellantis/PaddleOCR/output/export_model_german_custom_PP-OCRv5_server_rec_17072025",
     # text_detection_model_name = "ch_PP-OCRv5_det",
     use_doc_orientation_classify=True,
     use_doc_unwarping=False,
-    use_textline_orientation=False,
-    # lang = "german",
-    text_det_limit_side_len=640,
-    text_det_limit_type="max"
+    use_textline_orientation=True,
+    # # lang = "german",
+    # text_det_limit_side_len=640,
+    # text_det_limit_type="max"
     )
-
+img_paths = [l.strip() for l in open("/data1/hang/Stellantis/PaddleOCR/notebooks/Recognition/whole_doc_img_paths_00.txt").readlines()]
 # img_path = "/data1/hang/Stellantis/VDN_annotated/9377075037_VDN_20250510165525_1.jpg"
 # img_path = "/data1/stellantis/images/ID/9376717257_miscellaneous_93c03169ef11a2406ba577361c46e554_page_0.jpeg"
 # img_path = "/data1/stellantis/images/ID/9376271786_IDD1_20250428_page_0.jpeg"
@@ -28,13 +29,16 @@ ocr = PaddleOCR(
 # img_path = "/data1/stellantis/images/VDN/9376716467_miscellaneous_474a033f2f131487595b7179369e8aea_page_26.jpeg"
 # img_path = "/data1/stellantis/images/VDN/9376701227_miscellaneous_7cf2545ee8d06296cc71e95f48c318fa.pdf_page_12.jpeg"
 # img_path = "/data1/stellantis/images/INVOICE/9376967051_miscellaneous_860718460bdadd2d463ac6b8ffe1c9a6.pdf_page_0.jpeg"
-img_path = "/data1/stellantis/images/ZBII/9376052411_miscellaneous_b2bcd6610e4529f7f5dc91a5d2766a2c_page_3.jpeg"
-
-
-
-
 # img_path = "/data1/hang/Stellantis/VDN_annotated/9376869727_miscellaneous_7c59c6e1ec34fe958c66f4f749653244_page_19.jpeg"
 # img_path = "/data1/hang/Stellantis/VDN_annotated/9376600486_miscellaneous_d168fdf3855caf5de6408e603b484cbc_page_23.jpeg"
+
+# img_path = "/data1/stellantis/images/ZBII/9376052411_miscellaneous_b2bcd6610e4529f7f5dc91a5d2766a2c_page_3.jpeg"
+
+
+index = random.randint(0, len(img_paths))
+img_path = img_paths[index]
+# img_path = "/data1/stellantis/images/ZBII/9175954842_miscellaneous_7f251bf7ee973264ad52bf56237950f4.pdf_page_34.jpeg"
+
 time_start = time.time()
 result = ocr.predict(input=img_path, text_rec_score_thresh=0.7)
 time_end = time.time()
@@ -129,7 +133,7 @@ for res in result:
             cx = int(M["m10"] / M["m00"])
             cy = int(M["m01"] / M["m00"])
             cv2.putText(img_with_polys, str(i), (cx, cy), 
-                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
     
     # Save the image with detection polygons
     poly_output_path = "./output_german/corrected_img_with_dt_polys.jpg"
