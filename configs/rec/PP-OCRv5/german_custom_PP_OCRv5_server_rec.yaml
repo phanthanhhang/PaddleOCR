@@ -7,12 +7,12 @@ Global:
   epoch_num: 30 # Maximum training epoch number
   log_smooth_window: 20 # Log queue length, the median value in the queue each time will be printed
   print_batch_step: 10 # Set print log interval
-  save_model_dir: ./output/germen_custom_PP-OCRv5_server_rec_18072025
-  save_epoch_step: 2 # Set model save interval
+  save_model_dir: ./output/germen_custom_PP-OCRv5_server_rec_19072025
+  save_epoch_step: 3 # Set model save interval
   eval_batch_step: [0, 2000] # Set the model evaluation interval
   cal_metric_during_train: true # Set whether to evaluate the metric during the training process. At this time, the metric of the model under the current batch is evaluated
   calc_epoch_interval: 1
-  pretrained_model: output/germen_custom_PP-OCRv5_server_rec_17072025/best_accuracy.pdparams #PP-OCRv5_server_rec_pretrained.pdparams # Set the path to the pretrained model
+  pretrained_model: output/germen_custom_PP-OCRv5_server_rec_18072025/best_accuracy.pdparams #PP-OCRv5_server_rec_pretrained.pdparams # Set the path to the pretrained model
   checkpoints: # set model parameter path - Used to load parameters after interruption to continue training
   save_inference_dir:
   use_visualdl: false
@@ -83,10 +83,10 @@ Train:
     data_dir: /mnt/ssd1/hang/OCR_Recoginition_data/line_boxes_dataset
     ext_op_transform_idx: 1
     label_file_list:
-    - /mnt/ssd1/hang/OCR_Recoginition_data/line_boxes_dataset/train_split/train_00.txt
-    - /mnt/ssd1/hang/OCR_Recoginition_data/line_boxes_dataset/train_split/train_01.txt
-    # - /mnt/ssd1/hang/OCR_Recoginition_data/line_boxes_dataset/train_split/train_02.txt
-    # - /mnt/ssd1/hang/OCR_Recoginition_data/line_boxes_dataset/train_split/train_03.txt
+    - /mnt/ssd1/hang/OCR_Recoginition_data/line_boxes_dataset/train_split/train_04.txt
+    - /mnt/ssd1/hang/OCR_Recoginition_data/line_boxes_dataset/train_split/train_05.txt
+    - /mnt/ssd1/hang/OCR_Recoginition_data/line_boxes_dataset/train_split/train_06.txt
+    - /mnt/ssd1/hang/OCR_Recoginition_data/line_boxes_dataset/train_split/train_07.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
