@@ -8,7 +8,7 @@ import os
 import random
 ocr = PaddleOCR(
     text_detection_model_name = "PP-OCRv5_server_det",
-    text_recognition_model_dir = "/data1/hang/Stellantis/PaddleOCR/output/export_model_german_custom_PP-OCRv5_server_rec_17072025",
+    text_recognition_model_dir = "/data1/hang/Stellantis/PaddleOCR/output/export_model_german_custom_PP-OCRv5_server_rec_19072025",
     # text_detection_model_name = "ch_PP-OCRv5_det",
     use_doc_orientation_classify=True,
     use_doc_unwarping=False,

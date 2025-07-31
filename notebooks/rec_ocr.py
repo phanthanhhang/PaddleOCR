@@ -6,10 +6,11 @@ import cv2
 import numpy as np
 import os
 import random
-model = TextRecognition(model_dir = "/data1/hang/Stellantis/PaddleOCR/output/export_model_german_custom_PP-OCRv5_server_rec_17072025")
+model = TextRecognition(model_dir = "/data1/hang/Stellantis/PaddleOCR/output/export_model_german_custom_PP-OCRv5_server_rec_19072025")
 paths_gt = [l.strip().split("\t") for l in open("/mnt/ssd1/hang/OCR_Recoginition_data/line_boxes_dataset/test_split/test_00.txt", "r").readlines()]
 
-index = random.randint(0, len(paths_gt) - 1)
+# index = random.randint(0, len(paths_gt) - 1)
+index = 56464-1
 
 path = paths_gt[index][0]
 gt = paths_gt[index][1]
